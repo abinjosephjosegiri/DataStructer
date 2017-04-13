@@ -76,8 +76,23 @@ LinkList *Find(ELemType e, LinkList *PtrL){
 } 
 
 //插入节点
-void Insert(ElemType e, LinkList *PtrL){
-	
+void Insert(ElemType e, int i, LinkList *PtrL){
+	LinkList *p;
+	int i = 1;
+	//判断位置是否合法(1=<i<=Length(L)+1)
+	if(i<0 || i>Length(PtrL)+1) {
+		printf("插入位置不合法");
+		return;
+	} 
+	p = PtrL;
+	Node *s = (Node *)malloc(sizeof(Node));
+	s->data = e;
+	s->next = NULL;
+	for(i=1; i<=i-1; i++){
+		p = p->next;
+	}
+	s->next = p->next;
+	p->next = s; 
 }
 
 
