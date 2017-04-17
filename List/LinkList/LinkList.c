@@ -62,7 +62,7 @@ LinkList *FindKth(int K, LinkList *PtrL){
 } 
 
 //按值查找
-LinkList *Find(ELemType e, LinkList *PtrL){
+LinkList *Find(ElemType e, LinkList *PtrL){
 	LinkList *p = PtrL->next;
 	if(p && p->data!=e ){
 		p = p->next;
@@ -78,7 +78,7 @@ LinkList *Find(ELemType e, LinkList *PtrL){
 //插入节点
 void Insert(ElemType e, int i, LinkList *PtrL){
 	LinkList *p;
-	int i = 1;
+	int j = 1;
 	//判断位置是否合法(1=<i<=Length(L)+1)
 	if(i<0 || i>Length(PtrL)+1) {
 		printf("插入位置不合法");
@@ -88,12 +88,33 @@ void Insert(ElemType e, int i, LinkList *PtrL){
 	Node *s = (Node *)malloc(sizeof(Node));
 	s->data = e;
 	s->next = NULL;
-	for(i=1; i<=i-1; i++){
+	for(i=1; j<=i-1; j++){
 		p = p->next;
 	}
 	s->next = p->next;
 	p->next = s; 
 }
+
+//删除结点
+void Delete(LinkList *PtrL, int i){
+	int j = 0;
+	LinkList *p = PtrL;
+	Node *node;
+	//i是否在1到 Length(PtrL)之间
+	if(i<1 || i>Length(PtrL)){
+		printf("删除位置非法");
+		return;
+	} 
+	for(j=1; j<i-1; j++){
+		p = p->next;
+	}
+	//p为第i-1个结点，删除第i个结点
+	node = p->next;
+	p->next = p->next->next;
+	free(node);
+	
+} 
+
 
 
 int main(){
