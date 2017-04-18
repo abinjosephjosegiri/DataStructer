@@ -24,8 +24,16 @@ void Push(LinkStack *s, ElemType e){
 }
 
 ElemType Pop(LinkStack *s){
+	Node *node;
+	ElemType elem;
 	if( IsEmpty(s) ){
-		printf("");
+		printf("Õ»Îª¿Õ");return NULL; 
+	}else{
+		node = s->Next;
+		s->Next = node->Next;
+		elem = node->Data;
+		free(node);
+		return elem;
 	}
 }
 
