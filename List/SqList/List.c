@@ -1,44 +1,44 @@
-//		çº¿æ€§è¡¨(linear List):ç”±åŒä¸€ç±»å‹çš„æ•°æ®å…ƒç´ æ„æˆçš„æœ‰åºåºåˆ—çš„çº¿æ€§ç»“æ„ã€‚ 
-//		é•¿åº¦:çº¿æ€§è¡¨ä¸­å…ƒç´ çš„ä¸ªæ•°ã€‚
-//		ç©ºè¡¨:çº¿æ€§è¡¨ä¸­æ²¡æœ‰å…ƒç´ ã€‚
-//		 
+//		ÏßĞÔ±í(linear List):ÓÉÍ¬Ò»ÀàĞÍµÄÊı¾İÔªËØ¹¹³ÉµÄÓĞĞòĞòÁĞµÄÏßĞÔ½á¹¹¡£
+//		³¤¶È:ÏßĞÔ±íÖĞÔªËØµÄ¸öÊı¡£
+//		¿Õ±í:ÏßĞÔ±íÖĞÃ»ÓĞÔªËØ¡£
+//
 //		ADT List{
-//			æ•°æ®å¯¹è±¡ï¼šD={ai|aiâˆˆELemSetï¼Œi=1ã€2ã€3ã€ã€ã€ã€ã€n,n>=0} 
-//			æ•°æ®å…³ç³»ï¼š 
-//			åŸºæœ¬æ“ä½œï¼š
-//				1ã€List MakeEmpty()ï¼šåˆå§‹åŒ–ä¸€ä¸ªæ–°çš„ç©ºçº¿æ€§è¡¨Lï¼›
-//				2ã€ElementType FindKth( int K, List L )ï¼šæ ¹æ®æŒ‡å®šçš„ä½åºKï¼Œè¿”å›ç›¸åº”å…ƒç´  ï¼›
-//				3ã€int Find( ElementType X, List L )ï¼šå·²çŸ¥Xï¼Œè¿”å›çº¿æ€§è¡¨Lä¸­ä¸Xç›¸åŒçš„ç¬¬ä¸€ä¸ªå…ƒç´ çš„ç›¸åº”ä½åºiï¼›
-//						è‹¥ä¸å­˜åœ¨åˆ™è¿”å›ç©ºï¼›
-//				4ã€void Insert( ElementType X, int i, List L)ï¼šæŒ‡å®šä½åºiå‰æ’å…¥ä¸€ä¸ªæ–°å…ƒç´ Xï¼›
-//				5ã€void Delete( int  i, List L )ï¼šåˆ é™¤æŒ‡å®šä½åºiçš„å…ƒç´ ï¼›
-//				6ã€int Length( List L )ï¼šè¿”å›çº¿æ€§è¡¨Lçš„é•¿åº¦nã€‚
-//			
-//		}  
+//			Êı¾İ¶ÔÏó£ºD={ai|ai¡ÊELemSet£¬i=1¡¢2¡¢3¡¢¡¢¡¢¡¢¡¢n,n>=0}
+//			Êı¾İ¹ØÏµ£º
+//			»ù±¾²Ù×÷£º
+//				1¡¢List MakeEmpty()£º³õÊ¼»¯Ò»¸öĞÂµÄ¿ÕÏßĞÔ±íL£»
+//				2¡¢ElementType FindKth( int K, List L )£º¸ù¾İÖ¸¶¨µÄÎ»ĞòK£¬·µ»ØÏàÓ¦ÔªËØ £»
+//				3¡¢int Find( ElementType X, List L )£ºÒÑÖªX£¬·µ»ØÏßĞÔ±íLÖĞÓëXÏàÍ¬µÄµÚÒ»¸öÔªËØµÄÏàÓ¦Î»Ğòi£»
+//						Èô²»´æÔÚÔò·µ»Ø¿Õ£»
+//				4¡¢void Insert( ElementType X, int i, List L)£ºÖ¸¶¨Î»ĞòiÇ°²åÈëÒ»¸öĞÂÔªËØX£»
+//				5¡¢void Delete( int  i, List L )£ºÉ¾³ıÖ¸¶¨Î»ĞòiµÄÔªËØ£»
+//				6¡¢int Length( List L )£º·µ»ØÏßĞÔ±íLµÄ³¤¶Èn¡£
+//
+//		}
 
-/*çº¿æ€§è¡¨çš„é¡ºåºå­˜å‚¨*/
-#include <stdlib.h> 
+/*ÏßĞÔ±íµÄË³Ğò´æ´¢*/
+#include <stdlib.h>
 #define MAXSIZE	100
 
-typedef int ElemType; 
+typedef int ElemType;
 typedef struct{
 	ElemType data[MAXSIZE];
-	int Last;
+	int Last;//×îºóÒ»¸öÔªËØµÄÏÂ±ê 
 }List;
 List L, *PtrL;
 
-//åˆå§‹åŒ–	
+
 List *MakeEmpty(){
 	List *PtrL;
 	PtrL = (List *)malloc(sizeof(List));
 	if( !PtrL ){
 		exit(0);
 	}
-	PtrL->Last = -1; 
+	PtrL->Last = -1;
 	return PtrL;
-} 
+}
 
-//æŸ¥æ‰¾
+//²éÕÒ
 int Find(ElemType e, List *PtrL){
 	int i = 0;
 	while(e != PtrL->data[i] && i<= PtrL->Last){
@@ -47,20 +47,20 @@ int Find(ElemType e, List *PtrL){
 	if(i > PtrL->Last){
 		return -1;
 	}else return i;
-} 
-//æ’å…¥æ“ä½œ
-void Insert(List *PtrL, int i, ELemType e){
+}
+//²åÈë²Ù×÷
+void Insert(List *PtrL, int i, ElemType e){
 	int p ;
-	//æ£€æŸ¥æ˜¯å¦å·²æ»¡
+	//¼ì²éÊÇ·ñÒÑÂú
 	if(PtrL->Last == MAXSIZE-1){
-		printf("è¡¨æ»¡äº†");
+		printf("±íÂúÁË");
 		return;
 	}
 	if(i<0 || i>PtrL->Last+2){
-		printf("ä½ç½®ä¸åˆæ³•");
-		return; 
+		printf("Î»ÖÃ²»ºÏ·¨");
+		return;
 	}
-	//æ’å…¥
+	//²åÈë
 	for(p= PtrL->Last ; p>=i-1 ; p--){
 		PtrL->data[p+1] = PtrL->data[p];
 	}

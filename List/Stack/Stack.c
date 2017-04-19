@@ -22,7 +22,7 @@ typedef int ElemType;
 
 typedef struct{
 	ElemType data[MaxSize];
-	int top;
+	int top;//栈顶元素的下标 
 }Stack;
 
 void Push(Stack *PtrS, ElemType item){
