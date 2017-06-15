@@ -113,6 +113,7 @@ void Delete(LinkList *PtrL, int i){
 	p->next = p->next->next;
 	free(node);
 	
+	
 } 
 
 
